@@ -1,5 +1,5 @@
-[![Test](https://github.com/cloudmatos/matos-gcp-provider/actions/workflows/test.yaml/badge.svg?branch=main)](https://github.com/cloudmatos/matos-gcp-provider/actions/workflows/test.yaml)
-[![Pylint](https://github.com/cloudmatos/matos-gcp-provider/actions/workflows/pylint.yaml/badge.svg?branch=main)](https://github.com/cloudmatos/matos-gcp-provider/actions/workflows/pylint.yaml)
+[![Unit Test](https://github.com/cloudmatos/matos-gcp-provider/actions/workflows/matos-tox.yml/badge.svg?branch=develop)](https://github.com/cloudmatos/matos-gcp-provider/actions/workflows/matos-tox.yml)
+[![Pylint](https://github.com/cloudmatos/matos-gcp-provider/actions/workflows/matos-pylint.yml/badge.svg?branch=develop)](https://github.com/cloudmatos/matos-gcp-provider/actions/workflows/matos-pylint.yml)
 
 
 # matos-gcp-provider
