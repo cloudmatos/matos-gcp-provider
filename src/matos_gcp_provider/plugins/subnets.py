@@ -41,7 +41,6 @@ class Subnet(BaseProvider):
             for subnet in network.subnetworks:
                 subnet_zones.append(subnet.split('/')[8])
         subnet_zones = [*set(subnet_zones)]
-        
         for region in subnet_zones:
             subnetworks = subnetworkClient.list(project=self.project_id, region=region)
             for subnet in subnetworks:
@@ -56,7 +55,6 @@ class Subnet(BaseProvider):
                     network_details[subnet.network]["subnets"] = [subnet_info]
                 else:
                       network_details[subnet.network]["subnets"].append(subnet_info)
-
         return [network_details.get(network) for network in network_details.keys()]
 
 

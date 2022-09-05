@@ -29,10 +29,9 @@ class VPC(BaseProvider):
         networks = client.list(
             project=self.project_id
         )
-        
         final_networks = []
         for network in networks:
-            final_networks.append(MessageToDict(network._pb))
+            final_networks.append(MessageToDict(network._pb))# pylint: disable=W0212
         return final_networks
 
 def register() -> Any:
