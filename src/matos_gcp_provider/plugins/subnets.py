@@ -54,8 +54,8 @@ class Subnet(BaseProvider):
                 if not network_details.get(subnet.network).get("subnets"):
                     network_details[subnet.network]["subnets"] = [subnet_info]
                 else:
-                      network_details[subnet.network]["subnets"].append(subnet_info)
-        return [network_details.get(network) for network in network_details.keys()]
+                    network_details[subnet.network]["subnets"].append(subnet_info)
+        return [network_details.get(network) for network in network_details]
 
 
 def register() -> Any:
