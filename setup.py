@@ -132,7 +132,7 @@ setup(
                       "google-cloud-asset==3.7.1", "google-cloud-container==2.10.1", "google-cloud-core==2.2.1", "google-cloud-monitoring==2.8.0",
                       "google-cloud-org-policy==1.2.1", "google-cloud-os-config==1.9.0", "google-cloud-storage==1.43.0", "google-crc32c==1.3.0",
                       "google-resumable-media==2.1.0", "googleapis-common-protos", "grpc-google-iam-v1",
-                      "grpcio==1.43.0", "google-cloud-api-keys==0.1.0", "google-cloud-service-usage==1.4.1", "google-cloud-storage"],  # Optional
+                      "grpcio==1.43.0", "google-cloud-api-keys==0.1.0", "google-cloud-service-usage==1.4.1", "google-cloud-compute==1.5.1"],  # Optional
     # List additional groups of dependencies here (e.g. development
     # dependencies). Users will be able to install these using the "extras"
     # syntax, for example:
