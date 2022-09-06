@@ -29,36 +29,28 @@ class Subnet(BaseProvider):
         networks = client.list(
             project=self.project_id
         )
-        final_networks = {}
         subnet_zones = []
-        network_details = {}
+        network_details = []
         for network in networks:
-            final_networks[network.self_link] = {
-                "name": network.name,
-                "self_link": network.self_link,
-                "auto_create_subnetworks": network.auto_create_subnetworks,
-                }
             for subnet in network.subnetworks:
                 subnet_zones.append(subnet.split('/')[8])
-        subnet_zones = [*set(subnet_zones)]
+        subnet_zones = [*set(subnet_zones)]#fetch only those region where subnet has created
         for region in subnet_zones:
             subnetworks = subnetworkClient.list(project=self.project_id, region=region)
             for subnet in subnetworks:
-                network_details[subnet.network] = final_networks[subnet.network]
+                # network_details[subnet.network] = final_networks[subnet.network]
                 subnet_info = {
                         "name": subnet.name,
                         "enable_flow_logs": subnet.enable_flow_logs,
                         "ip_cidr_range": subnet.ip_cidr_range,
+                        "network_name": subnet.network.split('/')[-1],
                         "private_ipv6_google_access": subnet.private_ipv6_google_access,
                         }
-                if not network_details.get(subnet.network).get("subnets"):
-                    network_details[subnet.network]["subnets"] = [subnet_info]
-                else:
-                    network_details[subnet.network]["subnets"].append(subnet_info)
-        return [network_details.get(network) for network in network_details]
+                network_details.append(subnet_info)
+        return network_details
 
 
 def register() -> Any:
     """Register plugins type"""
-    factory.register("Subnet", Subnet)
+    factory.register("subnets", Subnet)
     

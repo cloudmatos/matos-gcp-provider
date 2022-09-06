@@ -5,8 +5,7 @@ from google.protobuf.json_format import MessageToDict
 from matos_gcp_provider.lib import factory
 from matos_gcp_provider.lib.base_provider import BaseProvider
 
-
-class VPC(BaseProvider):
+class Firewall(BaseProvider):
     """GCP VPC class
 
     Args:
@@ -18,6 +17,7 @@ class VPC(BaseProvider):
         Construct VPC service
         """
         self.resource = resource
+        self.resource_type = "instance"
         self.project_id = resource.pop("project_id")
         super().__init__(**kwargs)
 
@@ -25,16 +25,15 @@ class VPC(BaseProvider):
         """
         Service discovery
         """
-        client = compute_v1.NetworksClient(credentials=self.credentials)
-        networks = client.list(
-            project=self.project_id
-        )
-        final_networks = []
-        for network in networks:
-            final_networks.append(MessageToDict(network._pb))# pylint: disable=W0212
-        return final_networks
+        firewallClient = compute_v1.FirewallsClient(credentials=self.credentials)
+        firewallRules = firewallClient.list(project=self.project_id)
+        finalFirewallRules = []
+        for firewall in firewallRules:
+            finalFirewallRules.append(MessageToDict(firewall._pb))# pylint: disable=W0212
+        return finalFirewallRules
+        
 
 def register() -> Any:
     """Register plugins type"""
-    factory.register("vpc", VPC)
+    factory.register("firewall", Firewall)
     
