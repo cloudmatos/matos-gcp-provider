@@ -28,11 +28,35 @@ class orgPolicy(BaseProvider):
         #     parent="projects/{}".format(self.project_id),
         # )
         # page_result = client.list_constraints(request=request)
-        constraints_to_be_evaluate = ['projects/web-application-shared/constraints/iam.allowedPolicyMemberDomains']
+        constraints_to_be_evaluate = [
+            'iam.allowedPolicyMemberDomains',
+            'iam.automaticIamGrantsForDefaultServiceAccounts',
+            'compute.disableGuestAttributesAccess',
+            'compute.disableSerialPortAccess',
+            'iam.disableServiceAccountKeyUpload',
+            'iam.disableServiceAccountKeyCreation',
+            'iam.disableWorkloadIdentityClusterCreation',
+            'gcp.detailedAuditLoggingMode',
+            'storage.uniformBucketLevelAccess',
+            'iam.disableServiceAccountCreation',
+            'compute.requireOsLogin',
+            'serviceuser.services',
+            'sql.restrictAuthorizedNetworks',
+            'gcp.restrictNonCmekServices',
+            'compute.restrictLoadBalancerCreationForTypes',
+            'sql.restrictPublicIp',
+            'compute.restrictSharedVpcSubnetworks',
+            'compute.restrictVpcPeering',
+            'compute.restrictVpnPeerIPs',
+            'compute.vmCanIpForward',
+            'gcp.resourceLocations',
+            'compute.trustedImageProjects',
+            'compute.skipDefaultNetworkCreation'
+            ]
         constraints = []
         for constraint in constraints_to_be_evaluate:
             policy_request = orgpolicy_v2.GetEffectivePolicyRequest(
-                name=constraint.replace("constraints", "policies"),
+                name=f"projects/{self.project_id}/policies/{constraint}"
             )
             policies = client.get_effective_policy(request=policy_request)
             constraints.append(
