@@ -31,7 +31,7 @@ class orgPolicy(BaseProvider):
         constraints_to_be_evaluate = ['projects/web-application-shared/constraints/iam.allowedPolicyMemberDomains']
         constraints = []
         for constraint in constraints_to_be_evaluate:
-            policy_request = orgpolicy_v2.GetEffectivePolicyRequest(name=constraint.replace("constraints", "policies"),)
+            policy_request = orgpolicy_v2.GetEffectivePolicyRequest(name=constraint.replace("constraints", "policies"))
             policies_details = {}
             try:
                 policies = client.get_effective_policy(request=policy_request)
