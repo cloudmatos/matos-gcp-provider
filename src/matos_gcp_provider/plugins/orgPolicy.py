@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from typing import Any, Dict
 from google.cloud import orgpolicy_v2
-from google.protobuf.json_format import MessageToDict
+# from google.protobuf.json_format import MessageToDict
 from matos_gcp_provider.lib import factory
 from matos_gcp_provider.lib.base_provider import BaseProvider
 
