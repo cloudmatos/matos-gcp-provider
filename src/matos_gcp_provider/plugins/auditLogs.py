@@ -40,7 +40,7 @@ class AuditLogs(BaseProvider):
         )
         available_services = client.list_services(request=request)
         enabled_audit_logs = {}
-        for auditConfig in iam_policies.get("auditConfigs"):
+        for auditConfig in iam_policies.get("auditConfigs",[]):
             enabled_audit_logs[auditConfig.get("service")] = auditConfig.get(
                 "auditLogConfigs"
             )

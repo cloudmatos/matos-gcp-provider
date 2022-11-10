@@ -34,12 +34,17 @@ class orgPolicy(BaseProvider):
             policy_request = orgpolicy_v2.GetEffectivePolicyRequest(
                 name=constraint.replace("constraints", "policies"),
             )
-            policies = client.get_effective_policy(request=policy_request)
+            policies_details = {}
+            try:
+                policies = client.get_effective_policy(request=policy_request)
+                policies_details=policies._pb
+            except Exception as ex:
+                print(ex)
             constraints.append(
                 {
                     "type": "orgPolicy",
                     "constraits_name": constraint,
-                    "policies": MessageToDict(policies._pb)# pylint: disable=W0212
+                    "policies": policies_details # pylint: disable=W0212
                 }
             )
         return constraints
