@@ -4,6 +4,7 @@ from google.cloud import orgpolicy_v2
 # from google.protobuf.json_format import MessageToDict
 from matos_gcp_provider.lib import factory
 from matos_gcp_provider.lib.base_provider import BaseProvider
+import logging as log
 
 class orgPolicy(BaseProvider):
     """GCP instance class
@@ -36,9 +37,9 @@ class orgPolicy(BaseProvider):
             try:
                 policies = client.get_effective_policy(request=policy_request)
                 # policies_details = MessageToDict(policies._pb)
-                print(policies)
+                log.warning(policies)
             except Exception as ex:
-                print(ex)
+                log.error(ex)
             constraints.append(
                 {
                     "type": "orgPolicy",
