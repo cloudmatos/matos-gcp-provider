@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
+import logging as log
 from typing import Any, Dict
 from google.cloud import orgpolicy_v2
 # from google.protobuf.json_format import MessageToDict
 from matos_gcp_provider.lib import factory
 from matos_gcp_provider.lib.base_provider import BaseProvider
-import logging as log
 
 class orgPolicy(BaseProvider):
     """GCP instance class
