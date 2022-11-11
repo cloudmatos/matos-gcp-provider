@@ -31,7 +31,6 @@ class Firewall(BaseProvider):
         for firewall in firewallRules:
             finalFirewallRules.append(MessageToDict(firewall._pb))# pylint: disable=W0212
         return finalFirewallRules
-        
 
 def register() -> Any:
     """Register plugins type"""

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
+import logging as log
 from typing import Any, Dict
 from google.cloud import orgpolicy_v2
-from google.protobuf.json_format import MessageToDict
+# from google.protobuf.json_format import MessageToDict
 from matos_gcp_provider.lib import factory
 from matos_gcp_provider.lib.base_provider import BaseProvider
 
@@ -31,15 +32,19 @@ class orgPolicy(BaseProvider):
         constraints_to_be_evaluate = ['projects/web-application-shared/constraints/iam.allowedPolicyMemberDomains']
         constraints = []
         for constraint in constraints_to_be_evaluate:
-            policy_request = orgpolicy_v2.GetEffectivePolicyRequest(
-                name=constraint.replace("constraints", "policies"),
-            )
-            policies = client.get_effective_policy(request=policy_request)
+            policy_request = orgpolicy_v2.GetEffectivePolicyRequest(name=constraint.replace("constraints", "policies"),)
+            policies_details = {}
+            try:
+                policies = client.get_effective_policy(request=policy_request)
+                # policies_details = MessageToDict(policies._pb)
+                log.warning(policies)
+            except Exception as ex:
+                log.error(ex)
             constraints.append(
                 {
                     "type": "orgPolicy",
                     "constraits_name": constraint,
-                    "policies": MessageToDict(policies._pb)# pylint: disable=W0212
+                    "policies": policies_details # pylint: disable=W0212
                 }
             )
         return constraints
