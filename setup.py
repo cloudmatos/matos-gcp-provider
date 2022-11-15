@@ -127,7 +127,7 @@ setup(
     #
     # For an analysis of "install_requires" vs pip's requirements files see:
     # https://packaging.python.org/discussions/install-requires-vs-requirements/
-    install_requires=["protobuf==3.19.1", "google-api-core", "google-api-python-client==2.33.0", "google-auth==2.3.3",
+    install_requires=["protobuf==3.19.5", "google-api-core", "google-api-python-client==2.33.0", "google-auth==2.3.3",
                       "google-auth-httplib2==0.1.0", "google-cloud==0.34.0", "google-cloud-access-context-manager==0.1.9",
                       "google-cloud-asset==3.7.1", "google-cloud-container==2.10.1", "google-cloud-core==2.2.1", "google-cloud-monitoring==2.8.0",
                       "google-cloud-org-policy==1.2.1", "google-cloud-os-config==1.9.0", "google-cloud-storage==1.43.0", "google-crc32c==1.3.0",
